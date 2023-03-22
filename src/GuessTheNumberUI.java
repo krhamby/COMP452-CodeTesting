@@ -70,11 +70,7 @@ public class GuessTheNumberUI {
         //       but refactor how those are structured, which means the lambda will need to change.
 
         // DONE - Kevin
-        JPanel humanGuessesPanel = new HumanGuessesPanel(cardsPanel, gameResult -> {
-            gameOverPanel.setGameResults(gameResult);
-            gameOverPanel.setAnswerTxt(gameResult);
-            gameOverPanel.setNumGuessesTxt(gameResult);
-        });
+        JPanel humanGuessesPanel = new HumanGuessesPanel(cardsPanel, gameResult -> {gameOverPanel.setGameResults(gameResult);});
         addToCards(cardsPanel, humanGuessesPanel, ScreenID.HUMAN_PLAY.name());
 
         // COMPUTER_PLAY_LAUNCH

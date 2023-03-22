@@ -36,6 +36,10 @@ public class GameResult {
         this.answerTxt = "The answer was " + this.correctValue + ".";
     }
 
+    public String getAnswerTxt() {
+        return this.answerTxt;
+    }
+
     /**
      * Sets the text for the number of guesses. This is used for the number of guesses label in GameOverPanel.
      */
@@ -45,6 +49,10 @@ public class GameResult {
         } else {
             this.numGuessesTxt = (this.humanWasPlaying ? "You" : "I") + " guessed it in " + this.numGuesses + " guesses.";
         }
+    }
+
+    public String getNumGuessesTxt() {
+        return this.numGuessesTxt;
     }
 
     /**

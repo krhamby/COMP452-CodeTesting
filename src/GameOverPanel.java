@@ -66,19 +66,21 @@ public class GameOverPanel extends JPanel {
      */
     public void setGameResults(GameResult result){
         this.gameResult = result;
+        setAnswerTxt();
+        setNumGuessesTxt();
     }
 
     /**
      * Sets the UI answer text
      */
-    public void setAnswerTxt(GameResult result) {
-        answerTxt.setText(result.answerTxt);
+    private void setAnswerTxt() {
+        this.answerTxt.setText(this.gameResult.getAnswerTxt());
     }
 
     /**
      * Sets the UI number of guesses text
      */
-    public void setNumGuessesTxt(GameResult result) {
-        numGuessesTxt.setText(result.numGuessesTxt);
+    private void setNumGuessesTxt() {
+        this.numGuessesTxt.setText(this.gameResult.getNumGuessesTxt());
     }
 }
