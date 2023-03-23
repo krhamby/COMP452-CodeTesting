@@ -32,15 +32,15 @@ public class StatsFile extends GameStats {
             while ((values = csvReader.readNext()) != null) {
                 // values should have the date and the number of guesses as the two fields
                 try {
-                    getStatsEntry(limit, values);
+                    getStatsEntry(limit, values, statsMap);
                 }
                 catch(NumberFormatException nfe){
                     // NOTE: In a full implementation, we would log this error and possibly alert the user
-                    // throw nfe;
+                    throw nfe;
                 }
                 catch(DateTimeParseException dtpe){
                     // NOTE: In a full implementation, we would log this error and possibly alert the user
-                    // throw dtpe;
+                    throw dtpe;
                 }
             }
         } catch (CsvValidationException e) {
@@ -52,7 +52,7 @@ public class StatsFile extends GameStats {
         }
     }
 
-    private void getStatsEntry(LocalDateTime limit, String[] values) throws NumberFormatException, DateTimeParseException {
+    public void getStatsEntry(LocalDateTime limit, String[] values, SortedMap<Integer, Integer> statsMap) throws NumberFormatException, DateTimeParseException {
         LocalDateTime timestamp = LocalDateTime.parse(values[0]);
         int numGuesses = Integer.parseInt(values[1]);
 
