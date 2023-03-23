@@ -36,11 +36,11 @@ public class StatsFile extends GameStats {
                 }
                 catch(NumberFormatException nfe){
                     // NOTE: In a full implementation, we would log this error and possibly alert the user
-                    throw nfe;
+                    // throw nfe;
                 }
                 catch(DateTimeParseException dtpe){
                     // NOTE: In a full implementation, we would log this error and possibly alert the user
-                    throw dtpe;
+                    // throw dtpe;
                 }
             }
         } catch (CsvValidationException e) {
@@ -52,7 +52,7 @@ public class StatsFile extends GameStats {
         }
     }
 
-    private void getStatsEntry(LocalDateTime limit, String[] values) {
+    private void getStatsEntry(LocalDateTime limit, String[] values) throws NumberFormatException, DateTimeParseException {
         LocalDateTime timestamp = LocalDateTime.parse(values[0]);
         int numGuesses = Integer.parseInt(values[1]);
 
