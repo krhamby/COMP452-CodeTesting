@@ -47,6 +47,14 @@ public class HumanGuessesGame {
         return numGuesses;
     }
 
+    public int getUpperBound() {
+        return UPPER_BOUND;
+    }
+
+    public int getTarget() {
+        return target;
+    }
+
     boolean isDone(){
         return gameIsDone;
     }
