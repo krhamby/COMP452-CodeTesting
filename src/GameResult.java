@@ -14,8 +14,6 @@ public class GameResult {
     public final int numGuesses;
 
     // extracted from setGameResults in GameOverPanel
-    public String answerTxt;
-    public String numGuessesTxt;
     public String[] record;
 
     public GameResult(boolean humanWasPlaying, int correctValue, int numGuesses){
@@ -23,36 +21,8 @@ public class GameResult {
         this.correctValue = correctValue;
         this.numGuesses = numGuesses;
 
-        // all of these are extracted from setGameResults in GameOverPanel
-        setAnswerTxt();
-        setNumGuessesTxt();
+        // extracted from setGameResults in GameOverPanel
         writeStats();
-    }
-
-    /**
-     * Sets the text for the answer. This is used for the answer label in GameOverPanel.
-     */
-    private void setAnswerTxt() {
-        this.answerTxt = "The answer was " + this.correctValue + ".";
-    }
-
-    public String getAnswerTxt() {
-        return this.answerTxt;
-    }
-
-    /**
-     * Sets the text for the number of guesses. This is used for the number of guesses label in GameOverPanel.
-     */
-    private void setNumGuessesTxt() {
-        if (this.numGuesses == 1){
-            this.numGuessesTxt = (this.humanWasPlaying ? "You" : "I") + " guessed it on the first try!";
-        } else {
-            this.numGuessesTxt = (this.humanWasPlaying ? "You" : "I") + " guessed it in " + this.numGuesses + " guesses.";
-        }
-    }
-
-    public String getNumGuessesTxt() {
-        return this.numGuessesTxt;
     }
 
     /**
