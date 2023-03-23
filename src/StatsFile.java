@@ -16,7 +16,6 @@ import java.util.TreeMap;
 public class StatsFile extends GameStats {
     public static final String FILENAME = "guess-the-number-stats.csv";
 
-
     // maps the number of guesses required to the number of games within
     // the past 30 days where the person took that many guesses
     private SortedMap<Integer, Integer> statsMap;
@@ -24,18 +23,16 @@ public class StatsFile extends GameStats {
     public StatsFile(){
         statsMap = new TreeMap<>();
         LocalDateTime limit = LocalDateTime.now().minusDays(30);
+        populateStatsMap(limit);
+    }
 
+    private void populateStatsMap(LocalDateTime limit) {
         try (CSVReader csvReader = new CSVReader(new FileReader(FILENAME))) {
             String[] values = null;
             while ((values = csvReader.readNext()) != null) {
                 // values should have the date and the number of guesses as the two fields
                 try {
-                    LocalDateTime timestamp = LocalDateTime.parse(values[0]);
-                    int numGuesses = Integer.parseInt(values[1]);
-
-                    if (timestamp.isAfter(limit)) {
-                        statsMap.put(numGuesses, 1 + statsMap.getOrDefault(numGuesses, 0));
-                    }
+                    getStatsEntry(limit, values);
                 }
                 catch(NumberFormatException nfe){
                     // NOTE: In a full implementation, we would log this error and possibly alert the user
@@ -52,6 +49,15 @@ public class StatsFile extends GameStats {
         } catch (IOException e) {
             // NOTE: In a full implementation, we would log this error and alert the user
             // NOTE: For this project, you do not need unit tests for handling this exception.
+        }
+    }
+
+    private void getStatsEntry(LocalDateTime limit, String[] values) {
+        LocalDateTime timestamp = LocalDateTime.parse(values[0]);
+        int numGuesses = Integer.parseInt(values[1]);
+
+        if (timestamp.isAfter(limit)) {
+            statsMap.put(numGuesses, 1 + statsMap.getOrDefault(numGuesses, 0));
         }
     }
 
