@@ -27,6 +27,7 @@ class ComputerGuessesGameTest {
      * <li> {@code upperBound}
      * <li> {@code numGuesses} - should incrememnt by 1 after each guess
      * </ol>
+     * <p> This will also implictly test reaching the answer via the "Lower" button
      */
     @Test
     void makeLowerGuessTest() {
@@ -92,6 +93,7 @@ class ComputerGuessesGameTest {
      * <li> {@code lowerBound}
      * <li> {@code numGuesses} - should incrememnt by 1 after each guess
      * </ol>
+     * <p> This will also implictly test reaching the answer via the "Higher" button
      */
     @Test
     void makeHigherGuessTest() {
