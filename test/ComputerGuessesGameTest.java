@@ -13,14 +13,14 @@ class ComputerGuessesGameTest {
 
     @Test
     void controllableConstructorTest() {
-        ComputerGuessesGame game = new ComputerGuessesGame(500, 1000);
+        ComputerGuessesGame game = new ComputerGuessesGame(500, 1000, 750);
         assertEquals(0, game.getNumGuesses());
         assertEquals(1000, game.getUpperBound());
         assertEquals(500, game.getLowerBound());
         assertEquals(750, game.getLastGuess());
     }
 
-    /**
+     /**
      * This will check the three changes made by makeLowerGuess:
      * <ol>
      * <li> {@code lastGuess} - this is the primary focus of this test
@@ -28,6 +28,7 @@ class ComputerGuessesGameTest {
      * <li> {@code numGuesses} - should incrememnt by 1 after each guess
      * </ol>
      * <p> This will also implictly test reaching the answer via the "Lower" button
+     * <p> <b>NOTE:</b> This test will fail due to integer division.
      */
     @Test
     void makeLowerGuessTest() {
@@ -144,7 +145,7 @@ class ComputerGuessesGameTest {
 
     @Test
     void resetTest() {
-        ComputerGuessesGame game = new ComputerGuessesGame(500, 600);
+        ComputerGuessesGame game = new ComputerGuessesGame(500, 600, 550);
         game.reset();
 
         assertEquals(0, game.getNumGuesses());

@@ -18,11 +18,11 @@ public class ComputerGuessesGame {
      * @param lowerBound
      * @param upperBound
      */
-    public ComputerGuessesGame(int lowerBound, int upperBound) {
+    public ComputerGuessesGame(int lowerBound, int upperBound, int lastGuess) {
         this.numGuesses = 0;
         this.upperBound = upperBound;
         this.lowerBound = lowerBound;
-        this.lastGuess = (lowerBound + upperBound + 1) / 2;
+        this.lastGuess = lastGuess;
     }
 
     public void makeLowerGuess() {
