@@ -1,5 +1,10 @@
+import com.opencsv.CSVWriter;
+
 import javax.swing.*;
 import java.awt.*;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDateTime;
 
 /**
  * Panel displays after a game has concluded
@@ -85,6 +90,26 @@ public class GameOverPanel extends JPanel {
             this.numGuessesTxt.setText((this.gameResult.humanWasPlaying ? "You" : "I") + " guessed it on the first try!");
         } else {
             this.numGuessesTxt.setText((this.gameResult.humanWasPlaying ? "You" : "I") + " guessed it in " + this.gameResult.numGuesses + " guesses.");
+        }
+    }
+
+    /**
+     * Writes the game results to a CSV file if a human was playing
+     */
+    public void writeStats() {
+        if(this.gameResult.humanWasPlaying){
+            // write stats to file
+            try(CSVWriter writer = new CSVWriter(new FileWriter(StatsFile.FILENAME, true))) {
+
+                String [] record = new String[2];
+                record[0] = LocalDateTime.now().toString();
+                record[1] = Integer.toString(this.gameResult.numGuesses);
+
+                writer.writeNext(record);
+            } catch (IOException e) {
+                // NOTE: In a full implementation, we would log this error and possibly alert the user
+                // NOTE: For this project, you do not need unit tests for handling this exception.
+            }
         }
     }
 }
