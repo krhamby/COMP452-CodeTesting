@@ -22,6 +22,14 @@ public class HumanGuessesGame {
         gameIsDone = false;
     }
 
+    //testing double
+    HumanGuessesGame(int target) {
+        this.target = target;
+
+        numGuesses = 0;
+        gameIsDone = false;
+    }
+
     GuessResult makeGuess(int value){
         numGuesses += 1;
 
@@ -37,6 +45,14 @@ public class HumanGuessesGame {
 
     int getNumGuesses(){
         return numGuesses;
+    }
+
+    public int getUpperBound() {
+        return UPPER_BOUND;
+    }
+
+    public int getTarget() {
+        return target;
     }
 
     boolean isDone(){
