@@ -141,4 +141,15 @@ class ComputerGuessesGameTest {
         assertEquals(8, game.getNumGuesses());
         assertEquals(1000, game.getLastGuess());
     }
+
+    @Test
+    void resetTest() {
+        ComputerGuessesGame game = new ComputerGuessesGame(500, 600);
+        game.reset();
+
+        assertEquals(0, game.getNumGuesses());
+        assertEquals(1, game.getLowerBound());
+        assertEquals(1000, game.getUpperBound());
+        assertEquals(501, game.getLastGuess());
+    }
 }

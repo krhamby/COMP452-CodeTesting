@@ -13,6 +13,11 @@ public class ComputerGuessesGame {
         lastGuess = (lowerBound + upperBound + 1) / 2;
     }
 
+    /**
+     * Constructs a new computer game with the given bounds
+     * @param lowerBound
+     * @param upperBound
+     */
     public ComputerGuessesGame(int lowerBound, int upperBound) {
         this.numGuesses = 0;
         this.upperBound = upperBound;
