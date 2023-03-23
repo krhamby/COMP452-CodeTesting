@@ -27,7 +27,7 @@ public class Bin {
             final int lowerBound = BIN_EDGES[binIndex];
             int numGames = 0;
 
-            if(binIndex == BIN_EDGES.length-1){
+            if(binIndex == BIN_EDGES.length-1) {
                 // last bin
                 // Sum all the results from lowerBound on up
                 for(int numGuesses=lowerBound; numGuesses<stats.maxNumGuesses(); numGuesses++){
@@ -40,7 +40,6 @@ public class Bin {
                     numGames += stats.numGames(numGuesses);
                 }
             }
-
             nums[binIndex] = numGames;
         }
 
