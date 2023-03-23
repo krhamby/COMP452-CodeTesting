@@ -66,6 +66,7 @@ public class ComputerGuessesPanel extends JPanel {
 
         this.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent e) {
+                game.reset();
                 guessMessage.setText("I guess " + game.getLastGuess() + ".");
             }
         });

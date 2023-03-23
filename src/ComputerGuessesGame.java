@@ -13,6 +13,13 @@ public class ComputerGuessesGame {
         lastGuess = (lowerBound + upperBound + 1) / 2;
     }
 
+    public ComputerGuessesGame(int lowerBound, int upperBound) {
+        this.numGuesses = 0;
+        this.upperBound = upperBound;
+        this.lowerBound = lowerBound;
+        this.lastGuess = (lowerBound + upperBound + 1) / 2;
+    }
+
     public void makeLowerGuess() {
         upperBound = Math.min(upperBound, lastGuess);
 
@@ -25,6 +32,13 @@ public class ComputerGuessesGame {
 
         lastGuess = (lowerBound + upperBound + 1) / 2;
         numGuesses += 1;
+    }
+
+    public void reset() {
+        numGuesses = 0;
+        upperBound = 1000;
+        lowerBound = 1;
+        lastGuess = (lowerBound + upperBound + 1) / 2;
     }
 
     public int getNumGuesses() {
