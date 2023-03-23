@@ -13,20 +13,18 @@ public class ComputerGuessesGame {
         lastGuess = (lowerBound + upperBound + 1) / 2;
     }
 
-    public int makeHigherGuess() {
+    public void makeLowerGuess() {
         upperBound = Math.min(upperBound, lastGuess);
 
         lastGuess = (lowerBound + upperBound + 1) / 2;
         numGuesses += 1;
-        return lastGuess;
     }
 
-    public int makeLowerGuess() {
+    public void makeHigherGuess() {
         lowerBound = Math.max(lowerBound, lastGuess + 1);
 
         lastGuess = (lowerBound + upperBound + 1) / 2;
         numGuesses += 1;
-        return lastGuess;
     }
 
     public int getNumGuesses() {
@@ -35,5 +33,13 @@ public class ComputerGuessesGame {
 
     public int getLastGuess() {
         return lastGuess;
+    }
+
+    public int getUpperBound() {
+        return upperBound;
+    }
+
+    public int getLowerBound() {
+        return lowerBound;
     }
 }
