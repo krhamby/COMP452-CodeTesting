@@ -7,6 +7,7 @@ import java.util.ArrayList;
  * Loads data from the file and displays in a JPanel
  *
  * TODO: refactor this class
+ * DONE - Kevin
  */
 public class StatsPanel extends JPanel {
 
