@@ -1,3 +1,9 @@
+import com.opencsv.CSVWriter;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDateTime;
+
 /**
  * Data class to hold the result of a game
  * NOTE: You can refactor and edit this file if needed
@@ -14,5 +20,25 @@ public class GameResult {
         this.humanWasPlaying = humanWasPlaying;
         this.correctValue = correctValue;
         this.numGuesses = numGuesses;
+    }
+
+     /**
+     * Writes the game results to a CSV file if a human was playing
+     */
+    public void writeStats() {
+        if(this.humanWasPlaying){
+            // write stats to file
+            try(CSVWriter writer = new CSVWriter(new FileWriter(StatsFile.FILENAME, true))) {
+
+                String [] record = new String[2];
+                record[0] = LocalDateTime.now().toString();
+                record[1] = Integer.toString(this.numGuesses);
+
+                writer.writeNext(record);
+            } catch (IOException e) {
+                // NOTE: In a full implementation, we would log this error and possibly alert the user
+                // NOTE: For this project, you do not need unit tests for handling this exception.
+            }
+        }
     }
 }

@@ -72,7 +72,7 @@ public class GuessTheNumberUI {
         // DONE - Kevin
         JPanel humanGuessesPanel = new HumanGuessesPanel(cardsPanel, gameResult -> {
             gameOverPanel.setGameResults(gameResult);
-            gameOverPanel.writeStats();
+            gameResult.writeStats();
         });
         addToCards(cardsPanel, humanGuessesPanel, ScreenID.HUMAN_PLAY.name());
 
