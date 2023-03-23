@@ -29,9 +29,4 @@ class BinTest {
         assertEquals(2, bins[6]);
         assertEquals(2, bins[7]);
     }
-
-    public static void main(String[] args) {
-        BinTest binTest = new BinTest();
-        binTest.calculateNumGamesTest();
-    }
 }
