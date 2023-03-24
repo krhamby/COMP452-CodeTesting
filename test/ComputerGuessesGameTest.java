@@ -153,4 +153,8 @@ class ComputerGuessesGameTest {
         assertEquals(1000, game.getUpperBound());
         assertEquals(501, game.getLastGuess());
     }
+
+    //make test where there is one guess above, one below, and then the computer is correct
+
+    //test telling computer its gest was right?
 }

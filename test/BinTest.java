@@ -29,4 +29,6 @@ class BinTest {
         assertEquals(2, bins[6]);
         assertEquals(2, bins[7]);
     }
+
+    //test with empty game stats maybe?
 }
