@@ -8,6 +8,7 @@ class HumanGuessesGameTest {
     void testingDoubleConstructorTest() {
         RandomTestingDouble randGen = new RandomTestingDouble();
 
+        // specifically, we are injecting a test double here
         HumanGuessesGame game = new HumanGuessesGame(randGen);
         assertEquals(0, game.getNumGuesses());
         assertEquals(1000, game.getUpperBound());
