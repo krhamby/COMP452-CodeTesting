@@ -1,6 +1,9 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.SortedMap;
+import java.util.TreeMap;
+
 class BinTest {
 
     @Test
@@ -20,8 +23,20 @@ class BinTest {
      * {@code numGames} for the given bin and the next bin.
      */
     @Test
-    void calculateNumGamesTest() {
-        GameStatsTestingDouble gameStats = new GameStatsTestingDouble();
+    void calculateNumGamesTestFullList() {
+        SortedMap<Integer, Integer> statsMap = new TreeMap<>();
+        statsMap.put(1, 3 + statsMap.getOrDefault(1, 0));
+        statsMap.put(2, 2 + statsMap.getOrDefault(2, 0));
+        statsMap.put(4, 1 + statsMap.getOrDefault(4, 0));
+        statsMap.put(6, 4 + statsMap.getOrDefault(6, 0));
+        statsMap.put(8, 5 + statsMap.getOrDefault(8, 0));
+        statsMap.put(10, 6 + statsMap.getOrDefault(10, 0));
+        statsMap.put(12, 2 + statsMap.getOrDefault(12, 0));
+        statsMap.put(14, 1 + statsMap.getOrDefault(14, 0));
+        statsMap.put(23, 1 + statsMap.getOrDefault(23, 0));
+        statsMap.put(30, 1 + statsMap.getOrDefault(30, 0));
+
+        GameStatsTestingDouble gameStats = new GameStatsTestingDouble(statsMap);
         int[] bins = Bin.calculateNumGames(gameStats);
 
         assertEquals(3, bins[0]);
@@ -36,11 +51,51 @@ class BinTest {
 
     @Test
     void calculateNumGamesTestEmptyStats() {
-        GameStatsTestingDouble gameStats = new GameStatsTestingDouble(true);
+        SortedMap<Integer, Integer> statsMap = new TreeMap<>();
+
+        GameStatsTestingDouble gameStats = new GameStatsTestingDouble(statsMap);
         int[] bins = Bin.calculateNumGames(gameStats);
 
         assertEquals(0, bins[0]);
         assertEquals(0, bins[1]);
+        assertEquals(0, bins[2]);
+        assertEquals(0, bins[3]);
+        assertEquals(0, bins[4]);
+        assertEquals(0, bins[5]);
+        assertEquals(0, bins[6]);
+        assertEquals(0, bins[7]);
+    }
+
+    @Test
+    void calculateNumGamesTestOneLowValue() {
+        SortedMap<Integer, Integer> statsMap = new TreeMap<>();
+        statsMap.put(1, 1 + statsMap.getOrDefault(1, 0));
+
+        GameStatsTestingDouble gameStats = new GameStatsTestingDouble(statsMap);
+        int[] bins = Bin.calculateNumGames(gameStats);
+
+        assertEquals(1, bins[0]);
+        assertEquals(0, bins[1]);
+        assertEquals(0, bins[2]);
+        assertEquals(0, bins[3]);
+        assertEquals(0, bins[4]);
+        assertEquals(0, bins[5]);
+        assertEquals(0, bins[6]);
+        assertEquals(0, bins[7]);
+    }
+
+    @Test
+    void calculateNumGamesTestMultipleLowValues() {
+        SortedMap<Integer, Integer> statsMap = new TreeMap<>();
+        statsMap.put(1, 1 + statsMap.getOrDefault(1, 0));
+        statsMap.put(2, 3 + statsMap.getOrDefault(2, 0));
+        statsMap.put(3, 1 + statsMap.getOrDefault(3, 0));
+
+        GameStatsTestingDouble gameStats = new GameStatsTestingDouble(statsMap);
+        int[] bins = Bin.calculateNumGames(gameStats);
+
+        assertEquals(1, bins[0]);
+        assertEquals(4, bins[1]);
         assertEquals(0, bins[2]);
         assertEquals(0, bins[3]);
         assertEquals(0, bins[4]);
@@ -55,7 +110,10 @@ class BinTest {
      */
     @Test
     void calculateNumGamesTestOneLargeValue() {
-        GameStatsTestingDouble gameStats = new GameStatsTestingDouble(false);
+        SortedMap<Integer, Integer> statsMap = new TreeMap<>();
+        statsMap.put(30, 1 + statsMap.getOrDefault(30, 0));
+
+        GameStatsTestingDouble gameStats = new GameStatsTestingDouble(statsMap);
         int[] bins = Bin.calculateNumGames(gameStats);
 
         assertEquals(0, bins[0]);
@@ -69,12 +127,17 @@ class BinTest {
     }
 
     @Test
-    void calculateNumGamesTestLargeValues() {
-        GameStatsTestingDouble gameStats = new GameStatsTestingDouble();
+    void calculateNumGamesTestMultipleLargeValues() {
+        SortedMap<Integer, Integer> statsMap = new TreeMap<>();
+        statsMap.put(30, 1 + statsMap.getOrDefault(30, 0));
+        statsMap.put(18, 1 + statsMap.getOrDefault(18, 0));
+        statsMap.put(23, 3 + statsMap.getOrDefault(23, 0));
+
+        GameStatsTestingDouble gameStats = new GameStatsTestingDouble(statsMap);
         int[] bins = Bin.calculateNumGames(gameStats);
 
         // we know the other bins are incorrect per calculateNumGamesTest(),
         // so we only need to check the last bin
-        assertEquals(3, bins[7]);
+        assertEquals(5, bins[7]);
     }
 }
