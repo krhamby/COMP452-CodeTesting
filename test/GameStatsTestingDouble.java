@@ -16,6 +16,22 @@ class GameStatsTestingDouble extends GameStats {
         statsMap.put(12, 2 + statsMap.getOrDefault(12, 0));
         statsMap.put(14, 1 + statsMap.getOrDefault(14, 0));
         statsMap.put(23, 1 + statsMap.getOrDefault(23, 0));
+        statsMap.put(30, 1 + statsMap.getOrDefault(30, 0));
+    }
+
+    /**
+     * Constructor for GameStatsTestingDouble that allows the user to specify if they 
+     * want an empty {@code statsMap} or not.
+     * @param makeEmptyStatsMap if true, {@code statsMap} will be empty. Otherwise, it is populated with
+     * one large value.
+     */
+    public GameStatsTestingDouble(boolean makeEmptyStatsMap) {
+        statsMap = new TreeMap<>();
+
+        if (!makeEmptyStatsMap) {
+            statsMap.put(30, 1 + statsMap.getOrDefault(30, 0));
+
+        } 
     }
 
     @Override
