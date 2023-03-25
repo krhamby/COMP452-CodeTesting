@@ -7,8 +7,6 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 
 class StatsFileTest {
-    // TODO: constructor test?
-
     @Test
     void getStatsEntryTest() {
         StatsFile statsFile = new StatsFile();
