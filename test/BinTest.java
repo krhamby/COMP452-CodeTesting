@@ -126,6 +126,10 @@ class BinTest {
         assertEquals(1, bins[7]);
     }
 
+    /**
+     * This test fails because of an off-by-one error in the for-loop on line
+     * 33 in {@code Bin.java}. The last key's value is not included in the count.
+     */
     @Test
     void calculateNumGamesTestMultipleLargeValues() {
         SortedMap<Integer, Integer> statsMap = new TreeMap<>();
