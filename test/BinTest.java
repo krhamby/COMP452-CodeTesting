@@ -87,9 +87,10 @@ class BinTest {
     @Test
     void calculateNumGamesTestMultipleLowValues() {
         SortedMap<Integer, Integer> statsMap = new TreeMap<>();
+        statsMap.put(3, 1 + statsMap.getOrDefault(3, 0));
         statsMap.put(1, 1 + statsMap.getOrDefault(1, 0));
         statsMap.put(2, 3 + statsMap.getOrDefault(2, 0));
-        statsMap.put(3, 1 + statsMap.getOrDefault(3, 0));
+        
 
         GameStatsTestingDouble gameStats = new GameStatsTestingDouble(statsMap);
         int[] bins = Bin.calculateNumGames(gameStats);
@@ -143,5 +144,47 @@ class BinTest {
         // we know the other bins are incorrect per calculateNumGamesTest(),
         // so we only need to check the last bin
         assertEquals(5, bins[7]);
+    }
+
+    @Test 
+    void calculateNumGamesTestInvalidKeys() {
+        SortedMap<Integer, Integer> statsMap = new TreeMap<>();
+        statsMap.put(0, 1 + statsMap.getOrDefault(0, 0));
+        statsMap.put(-1, 1 + statsMap.getOrDefault(-1, 0));
+
+        GameStatsTestingDouble gameStats = new GameStatsTestingDouble(statsMap);
+        int[] bins = Bin.calculateNumGames(gameStats);
+
+        assertEquals(0, bins[0]);
+        assertEquals(0, bins[1]);
+        assertEquals(0, bins[2]);
+        assertEquals(0, bins[3]);
+        assertEquals(0, bins[4]);
+        assertEquals(0, bins[5]);
+        assertEquals(0, bins[6]);
+        assertEquals(0, bins[7]);
+    }
+
+    /**
+     * This test fails because the code does not account for negative values.
+     */
+    @Test
+    void calculateNumGamesTestInvalidValue() {
+        SortedMap<Integer, Integer> statsMap = new TreeMap<>();
+        statsMap.put(1, -1 + statsMap.getOrDefault(1, 0));
+
+        GameStatsTestingDouble gameStats = new GameStatsTestingDouble(statsMap);
+        int[] bins = Bin.calculateNumGames(gameStats);
+
+        assertEquals(0, bins[0]);
+        assertEquals(0, bins[1]);
+        assertEquals(0, bins[0]);
+        assertEquals(0, bins[1]);
+        assertEquals(0, bins[2]);
+        assertEquals(0, bins[3]);
+        assertEquals(0, bins[4]);
+        assertEquals(0, bins[5]);
+        assertEquals(0, bins[6]);
+        assertEquals(0, bins[7]);
     }
 }
