@@ -19,7 +19,7 @@ class StatsFileTest {
     }
 
     @Test
-    void getStatsEntryNFETest() {
+    void getStatsEntryNumberFormatExceptionTest() {
         StatsFile statsFile = new StatsFile();
         SortedMap<Integer, Integer> statsMap = new TreeMap<>();
         LocalDateTime limit = LocalDateTime.parse("2020-01-01T00:00:00");
@@ -31,7 +31,7 @@ class StatsFileTest {
     }
 
     @Test
-    void getStatsEntryDTPETest() {
+    void getStatsEntryDateTimeParseExceptionTest() {
         StatsFile statsFile = new StatsFile();
         SortedMap<Integer, Integer> statsMap = new TreeMap<>();
         LocalDateTime limit = LocalDateTime.parse("2020-01-01T00:00:00");
