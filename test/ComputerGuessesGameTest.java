@@ -154,7 +154,19 @@ class ComputerGuessesGameTest {
         assertEquals(501, game.getLastGuess());
     }
 
-    //make test where there is one guess above, one below, and then the computer is correct
+    @Test
+    void makeHighThenLowGuess() {
+        ComputerGuessesGame game = new ComputerGuessesGame();
+        assertEquals(501, game.getLastGuess());
 
-    //test telling computer its gest was right?
+        game.makeHigherGuess();
+        assertEquals(502, game.getLowerBound());
+        assertEquals(1, game.getNumGuesses());
+        assertEquals(751, game.getLastGuess());
+
+        game.makeLowerGuess();
+        assertEquals(751, game.getUpperBound());
+        assertEquals(2, game.getNumGuesses());
+        assertEquals(627, game.getLastGuess());
+    }
 }

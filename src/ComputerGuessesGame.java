@@ -1,4 +1,3 @@
-// added by Kevin
 public class ComputerGuessesGame {
     private int upperBound;
     private int lowerBound;
