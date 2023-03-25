@@ -96,5 +96,4 @@ class HumanGuessesGameTest {
         assertEquals(3, game.getNumGuesses());
         assertEquals(true, game.isDone());
     }
-    //test making multiple guesses
 }
